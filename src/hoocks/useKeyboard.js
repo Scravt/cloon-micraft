@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+
 const ACTIONS_KEYBOARD_MAP = {
     KeyW: 'moveForward',
     KeyS: 'moveBackward',
@@ -10,9 +11,8 @@ const ACTIONS_KEYBOARD_MAP = {
     Digit3: 'glass',
     Digit4: 'wood',
     Digit5: 'log'
-
-
 }
+
 export const useKeyboard = () => {
     const [actions, setActions] = useState({
         moveForward: false,
@@ -26,22 +26,27 @@ export const useKeyboard = () => {
         mood: false,
         log: false,
     })
+
     useEffect(() => {
         const handleKeyDown = event => {
             const { code } = event
             const action = ACTIONS_KEYBOARD_MAP[code]
+
             if (action) {
+               // if(actions[action])return
+
                 setActions(prevActions => ({
                     ...prevActions,
                     [action]: true
                 }))
-
+             }
             }
 
             const handleKeyUp = event => {
                 const { code } = event
                 const action = ACTIONS_KEYBOARD_MAP[code]
                 if (action) {
+                 //   if(actions[action])return
                     setActions(prevActions => ({
                         ...prevActions,
                         [action]: false
@@ -49,13 +54,15 @@ export const useKeyboard = () => {
                 }
             }
 
+            document.addEventListener('keydown', handleKeyDown)
+            document.addEventListener('keyup', handleKeyUp)
+
             return () => {
                 document.addEventListener('keydown', handleKeyDown),
                 document.addEventListener('Keyup', handleKeyUp)
 
             }
-        }
-    }, [] )
+        }, [])
 
     return actions
 }
