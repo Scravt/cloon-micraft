@@ -4,7 +4,7 @@ const ACTIONS_KEYBOARD_MAP = {
     KeyW: 'moveForward',
     KeyS: 'moveBackward',
     KeyA: 'moveLeft',
-    KeyD: 'MoveRight',
+    KeyD: 'moveRight',
     Space: 'jump',
     Digit1: 'dirt',
     Digit2: 'grass',

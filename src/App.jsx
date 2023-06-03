@@ -21,6 +21,7 @@ function App() {
         </Physics>
 
       </Canvas>
+      <div className='pointer'>+</div>
     </>
    )
 }
